@@ -9,7 +9,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity implements CustomRecyclerView.ItemClickListener {
+public class MainActivity extends AppCompatActivity {
 
     //member variables
     private final ArrayList<Item> items = new ArrayList<>();
@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements CustomRecyclerVie
         initViews();
         initData();
         initDataAdapter();
-        initListeners();
     }
 
     private void initViews() {
@@ -52,14 +51,8 @@ public class MainActivity extends AppCompatActivity implements CustomRecyclerVie
         rv_items.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void initListeners() {
-        //Establim el capturador d'esdeveniments de pulsacions d'elements; en aquest cas som nosaltres mateixos. És el mètode onClick
-        myAdapter.setOnClickListener(this);
-    }
-
-    @Override
-    //Gestionem el click de l'usuari al RecyclerView
-    public void onClick(View view, int position) {
+    //Gestionem el click de l'usuari en un item del RecyclerView gràcies al ViewHolder
+    public void itemClick(View view, int position) {
         Toast.makeText(this, getString(R.string.haspressed,position), Toast.LENGTH_SHORT).show();
     }
 }
